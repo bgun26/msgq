@@ -3,15 +3,26 @@ package main
 import (
 	"flag"
 	"fmt"
-	"msgq/client"
-	"msgq/server"
 	"os"
+
+	"github.com/bgun26/msgq/client"
+	"github.com/bgun26/msgq/server"
 )
+
+const Version string = "0.1.1"
+
+func usageFunc() {
+	fmt.Fprintf(flag.CommandLine.Output(), "Version: %s\n", Version)
+	fmt.Fprintf(flag.CommandLine.Output(), "Usage of %s:\n", os.Args[0])
+	flag.PrintDefaults()
+
+}
 
 func main() {
 	// Define CLI arguments
 	numWorkersPtr := flag.Int("num-workers", 1, "Number of workers to start the server with")
 	numMessagesPtr := flag.Int("num-messages", 5, "Number of messages to send to server")
+	flag.Usage = usageFunc
 	// Parse CLI arguments
 	flag.Parse()
 	if *numWorkersPtr <= 0 {

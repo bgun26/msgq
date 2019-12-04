@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"log"
 	"math/rand"
-	"msgq/server"
 	"os"
 	"time"
+
+	"github.com/bgun26/msgq/server"
 )
 
 var logClient *log.Logger = log.New(os.Stdout, "[Client] ", log.Ltime)
